@@ -1,0 +1,16 @@
+# Indicating which version of Docker-compose we wish to use
+version: "3.9"
+
+# We will be creating these services
+services:
+  flask:
+    build: ./server
+    container_name: flask
+    ports:
+      - "8000:8000"
+
+  nginx:
+    build: ./client
+    container_name: nginx
+    ports:
+      - "8080:8080"
