@@ -1,7 +1,8 @@
 import os
+from typing import Dict, List
 
 
-def getFilesnamesAndFilepathsInDirectory(directory) -> list[dict[str, str]]:
+def getFilesnamesAndFilepathsInDirectory(directory) -> List[Dict[str, str]]:
     """
     Returns a list of filesnames in a directory.
     """

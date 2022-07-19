@@ -1,10 +1,11 @@
 from base64 import b64decode, b64encode
 from io import StringIO, BytesIO
+from typing import Union
 
 from PIL import Image
 
 
-def decodeDataImage(dataImage: str) -> Image.Image | None:
+def decodeDataImage(dataImage: str) -> Union[Image.Image, None]:
     headers, data = dataImage.split(',')
     buffer = StringIO()
     buffer.write(data)

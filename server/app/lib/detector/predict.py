@@ -1,6 +1,6 @@
 import time
 import os
-from typing import Any
+from typing import Any, Dict, List
 
 from PIL import Image as PILImage
 from PIL.Image import Image
@@ -19,14 +19,14 @@ from app.lib.utils.TimeUtils import initTimer, endTimer
 CURRENT_DIR = os.path.join(os.getcwd(), 'yolov5s_helmet.pt')
 
 
-def predictImgs(files: list[dict[str, str]], statistics=False) -> bool | tuple[list[dict[str, Any]], dict[str, float]] | \
-                                                                  list[dict[str, Any]]:
+def predictImgs(files: List[Dict[str, str]], statistics=False) -> bool | tuple[List[Dict[str, Any]], Dict[str, float]] | \
+        List[Dict[str, Any]]:
     # Load model singleton
     model = YoloV5ModelSingleton()
     model.loadModel()
 
     # Set default values for variables
-    imgs: list[Image] = []
+    imgs: List[Image] = []
     results: Detections = []
 
     # START Load process
@@ -108,7 +108,8 @@ def predictRealTime(dataImage, iddle: bool = True):
         predicts = model.detect(img)
         predicts.render()
 
-        numDetections = len(predicts.pandas().xyxy[0].to_dict(orient='records'))
+        numDetections = len(
+            predicts.pandas().xyxy[0].to_dict(orient='records'))
         imgPredicted = predicts.imgs[0]
 
         # To gray scale
@@ -153,7 +154,8 @@ def predictVid(videoName: str, videoPath: str):
     createDirectory(OUTPUT_FOLDER, deleteContent=True)
 
     fourcc = VideoWriter_fourcc(*'AVC1')
-    output = VideoWriter(os.path.join(OUTPUT_FOLDER, videoName), fourcc, fps, (width, height))
+    output = VideoWriter(os.path.join(
+        OUTPUT_FOLDER, videoName), fourcc, fps, (width, height))
     # END Load video writer
 
     # Variables for detect optimization
@@ -172,7 +174,8 @@ def predictVid(videoName: str, videoPath: str):
                 predicts = model.detect(frame)
                 predicts.render()
 
-                numDetections = len(predicts.pandas().xyxy[0].to_dict(orient='records'))
+                numDetections = len(
+                    predicts.pandas().xyxy[0].to_dict(orient='records'))
                 framePredicted = predicts.imgs[0]
 
                 # Write the predicted frame

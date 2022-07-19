@@ -1,4 +1,5 @@
 import os
+from typing import Dict, List
 import uuid
 import base64
 from io import BytesIO
@@ -10,7 +11,7 @@ from app.config import INPUT_FOLDER, OUTPUT_FOLDER
 from app.lib.files.directories import createDirectory
 
 
-def __uploadFile(file: FileStorage) -> dict[str, str]:
+def __uploadFile(file: FileStorage) -> Dict[str, str]:
     extensionFile = file.content_type.split('/')[-1]
     filename = str(uuid.uuid4()) + '.' + extensionFile
     filepath = os.path.join(INPUT_FOLDER, filename)
@@ -20,7 +21,7 @@ def __uploadFile(file: FileStorage) -> dict[str, str]:
     return {'filename': filename, 'filepath': filepath}
 
 
-def uploadFiles(files: list[FileStorage]) -> list[dict[str, str]]:
+def uploadFiles(files: List[FileStorage]) -> List[Dict[str, str]]:
     createDirectory(INPUT_FOLDER, deleteContent=True)
 
     result = []
@@ -41,7 +42,7 @@ def __encodeImg(filepath: str) -> str:
     return imgBase64
 
 
-def encodeImgs(filepaths: list[str]) -> list[str]:
+def encodeImgs(filepaths: List[str]) -> List[str]:
     result = []
 
     for filepath in filepaths:
@@ -56,7 +57,7 @@ def __downloadFile(filename: str) -> str:
     return img
 
 
-def downloadFiles(filesnames: list[str]) -> list[str]:
+def downloadFiles(filesnames: List[str]) -> List[str]:
     filepaths = [os.path.join(OUTPUT_FOLDER, filename)
                  for filename in filesnames]
     imgs = encodeImgs(filepaths)

@@ -1,3 +1,4 @@
+from typing import Tuple
 import cv2
 from cv2 import VideoCapture
 
@@ -7,7 +8,7 @@ def getFpsFromVideo(video: VideoCapture):
     return fps
 
 
-def getOutputVideoWriter(filename, fps: float, dimensions: tuple[int, int]):
+def getOutputVideoWriter(filename, fps: float, dimensions: Tuple[int, int]):
     fourcc = cv2.VideoWriter_fourcc(*'AVC1')
     output = cv2.VideoWriter(filename, fourcc, fps, dimensions)
     return output
