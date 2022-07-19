@@ -1,0 +1,8 @@
+autopep8==1.6.0
+Flask==2.1.2
+Flask-Cors==3.0.10
+Flask-SocketIO==5.2.0
+gevent==21.12.0
+gevent-websocket==0.10.1
+requests==2.27.1
+yolov5==6.1.6

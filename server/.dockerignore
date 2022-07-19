@@ -1,0 +1,6 @@
+.gitignore
+.md
+__pycahe__/
+.git/
+venv/
+temp/
