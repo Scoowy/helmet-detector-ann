@@ -1,6 +1,6 @@
 import time
 import os
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Tuple, Union
 
 from PIL import Image as PILImage
 from PIL.Image import Image
@@ -19,8 +19,7 @@ from app.lib.utils.TimeUtils import initTimer, endTimer
 CURRENT_DIR = os.path.join(os.getcwd(), 'yolov5s_helmet.pt')
 
 
-def predictImgs(files: List[Dict[str, str]], statistics=False) -> bool | Tuple[List[Dict[str, Any]], Dict[str, float]] | \
-        List[Dict[str, Any]]:
+def predictImgs(files: List[Dict[str, str]], statistics=False) -> Union[bool, Tuple[List[Dict[str, Any]], Dict[str, float]], List[Dict[str, Any]]]:
     # Load model singleton
     model = YoloV5ModelSingleton()
     model.loadModel()
