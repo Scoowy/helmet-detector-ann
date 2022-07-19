@@ -1,5 +1,5 @@
-import {createApp} from "vue";
-import {createRouter, createWebHistory} from "vue-router";
+import { createApp } from "vue";
+import { createRouter, createWebHistory } from "vue-router";
 import Notifications from "@kyvg/vue3-notification";
 
 import FontAwesomePlugin from "./config/fontAwesome.config";
@@ -9,10 +9,9 @@ import IndexView from "./views/IndexView.vue";
 import UploadFilesView from "./views/UploadFilesView.vue";
 import AboutView from "./views/AboutView.vue";
 import DetectionView from "./views/DetectionView.vue";
-import StreamView from "./views/StreamView.vue";
 
 const routes = [
-  {path: "/", component: IndexView},
+  { path: "/", component: IndexView },
   {
     path: "/upload/:typeFile",
     name: "upload",
@@ -23,12 +22,12 @@ const routes = [
     path: "/predict/:typeFile",
     name: "predict",
     component: DetectionView,
-    props: true
+    props: true,
   },
   {
     path: "/stream",
     name: "stream",
-    component: StreamView,
+    component: () => import("./views/StreamView.vue"),
   },
   {
     path: "/about",
