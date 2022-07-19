@@ -6,3 +6,7 @@ gevent==21.12.0
 gevent-websocket==0.10.1
 requests==2.27.1
 yolov5==6.1.6
+torch
+torchvision
+torchaudio
+opencv-python
