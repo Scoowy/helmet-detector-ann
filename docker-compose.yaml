@@ -12,5 +12,7 @@ services:
   nginx:
     build: ./client
     container_name: nginx
+    depends_on:
+      - flask
     ports:
-      - "8080:8080"
+      - "8080:80"
